@@ -20,3 +20,6 @@ RUN cd K3D-jupyter && /opt/conda/envs/python2/bin/pip install .
 
 # Copy /home/jovyan/work/K3D-jupyter/examples dir to /home/jovyan/work dir
 RUN cp -a /home/jovyan/work/K3D-jupyter/examples /home/jovyan/work
+
+# Change the owner of /home/jovyan/work/examples dir to jovyan (recursively)
+RUN chown -R jovyan /home/jovyan/work/examples
