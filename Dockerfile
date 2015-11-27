@@ -17,3 +17,6 @@ RUN git clone https://github.com/K3D-tools/K3D-jupyter.git
 RUN cd K3D-jupyter && bower install --allow-root --config.interactive=false
 RUN cd K3D-jupyter && pip install .
 RUN cd K3D-jupyter && /opt/conda/envs/python2/bin/pip install .
+
+# Copy /home/jovyan/work/K3D-jupyter/examples dir to /home/jovyan/work dir
+RUN cp -a /home/jovyan/work/K3D-jupyter/examples /home/jovyan/work
