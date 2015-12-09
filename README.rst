@@ -23,16 +23,32 @@ To start a container in detached mode, you use ``-d`` or ``--detach`` option. By
 ::
 
     $ docker run -d -p HOST_PORT:CONTAINER_PORT IMAGE
-    $ docker run -d -p 8888:8888 korniichuk/jupyter-k3d-notebook
+    $ docker run -d -p 8888:8888 korniichuk/scipy-k3d-notebook
 
 or::
 
     $ docker run --detach -p HOST_PORT:CONTAINER_PORT IMAGE
-    $ docker run --detach -p 8888:8888 korniichuk/jupyter-k3d-notebook
+    $ docker run --detach -p 8888:8888 korniichuk/scipy-k3d-notebook
 
 Where:
 
 * ``-d`` or ``--detach`` -- run container in background and print container ID.
+
+Ports
+-----
+We can also bind Docker containers to specific ports using the ``-p`` or ``--publish`` option, for example::
+
+    $ docker run -d -p HOST_PORT:CONTAINER_PORT IMAGE
+    $ docker run -d -p 8888:8888 korniichuk/scipy-k3d-notebook
+
+or::
+
+    $ docker run -d --publish HOST_PORT:CONTAINER_PORT IMAGE
+    $ docker run -d --publish 8888:8888 korniichuk/scipy-k3d-notebook
+
+Where:
+
+* ``-p`` or ``--publish`` -- publish a container's port(s) to the host.
 
 Interactive processes
 ---------------------
