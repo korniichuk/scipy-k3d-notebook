@@ -17,19 +17,22 @@ The following command starts a container with the Notebook server listening for 
 
 User guide
 ==========
-Users
------
-You can start a container with ``root`` user::
+Detached
+--------
+To start a container in detached mode, you use ``-d`` or ``--detach`` option. By design, containers started in detached mode exit when the root process used to run the container exits. A container in detached mode cannot be automatically removed when it stops, this means you cannot use the ``--rm`` option with ``-d`` option.
+::
 
-    $ docker run -u root -d -p 8888:8888 korniichuk/scipy-k3d-notebook
+    $ docker run -d -p HOST_PORT:CONTAINER_PORT IMAGE
+    $ docker run -d -p 8888:8888 korniichuk/jupyter-k3d-notebook
 
 or::
 
-    $ docker run --user root -d -p 8888:8888 korniichuk/scipy-k3d-notebook
+    $ docker run --detach -p HOST_PORT:CONTAINER_PORT IMAGE
+    $ docker run --detach -p 8888:8888 korniichuk/jupyter-k3d-notebook
 
 Where:
 
-* ``-u`` or ``--user`` -- username or UID (format: <name|uid>[:<group|gid>]).
+* ``-d`` or ``--detach`` -- run container in background and print container ID.
 
 Interactive processes
 ---------------------
