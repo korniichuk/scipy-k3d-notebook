@@ -13,7 +13,7 @@ Quickstart
 ==========
 The following command starts a container with the Notebook server listening for HTTP connections on port 8888 without authentication configured::
 
-    $ docker run -d -p 8888:8888 korniichuk/scipy-k3d-notebook
+    $ docker run -d -p 8888:8888 -u root korniichuk/scipy-k3d-notebook
 
 User guide
 ==========
@@ -22,13 +22,13 @@ Detached
 To start a container in detached mode, you use ``-d`` or ``--detach`` option. By design, containers started in detached mode exit when the root process used to run the container exits. A container in detached mode cannot be automatically removed when it stops, this means you cannot use the ``--rm`` option with ``-d`` option.
 ::
 
-    $ docker run -d -p HOST_PORT:CONTAINER_PORT IMAGE
-    $ docker run -d -p 8888:8888 korniichuk/scipy-k3d-notebook
+    $ docker run -d -p HOST_PORT:CONTAINER_PORT -u USERNAME IMAGE
+    $ docker run -d -p 8888:8888 -u root korniichuk/scipy-k3d-notebook
 
 or::
 
-    $ docker run --detach -p HOST_PORT:CONTAINER_PORT IMAGE
-    $ docker run --detach -p 8888:8888 korniichuk/scipy-k3d-notebook
+    $ docker run --detach -p HOST_PORT:CONTAINER_PORT -u USERNAME IMAGE
+    $ docker run --detach -p 8888:8888 -u root korniichuk/scipy-k3d-notebook
 
 Where:
 
@@ -36,19 +36,35 @@ Where:
 
 Ports
 -----
-We can also bind Docker containers to specific ports using the ``-p`` or ``--publish`` option, for example::
+You can bind Docker containers to specific ports using the ``-p`` or ``--publish`` option, for example::
 
-    $ docker run -d -p HOST_PORT:CONTAINER_PORT IMAGE
-    $ docker run -d -p 8888:8888 korniichuk/scipy-k3d-notebook
+    $ docker run -d -p HOST_PORT:CONTAINER_PORT -u USERNAME IMAGE
+    $ docker run -d -p 8888:8888 -u root korniichuk/scipy-k3d-notebook
 
 or::
 
-    $ docker run -d --publish HOST_PORT:CONTAINER_PORT IMAGE
-    $ docker run -d --publish 8888:8888 korniichuk/scipy-k3d-notebook
+    $ docker run -d --publish HOST_PORT:CONTAINER_PORT -u USERNAME IMAGE
+    $ docker run -d --publish 8888:8888 -u root korniichuk/scipy-k3d-notebook
 
 Where:
 
 * ``-p`` or ``--publish`` -- publish a container's port(s) to the host.
+
+Users
+-----
+You can start a container with ``root`` user by passing the ``-u`` option::
+
+    $ docker run -d -p HOST_PORT:CONTAINER_PORT -u USERNAME IMAGE
+    $ docker run -d -p 8888:8888 -u root korniichuk/scipy-k3d-notebook
+
+or::
+
+    $ docker run -d -p HOST_PORT:CONTAINER_PORT --user USERNAME IMAGE
+    $ docker run -d -p 8888:8888 --user root korniichuk/scipy-k3d-notebook
+
+Where:
+ 
+* ``-u`` or ``--user`` -- username or UID (format: <name|uid>[:<group|gid>]).
 
 Interactive processes
 ---------------------
